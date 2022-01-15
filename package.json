@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon --watch '*.js' index.js"
+    "dev": "nodemon --watch '*.js' index.js",
+    "build:dev": " yarn build:clear  && yarn run config:dev",
+    "pm2:dev": "yarn build:dev && pm2 start    ecosystem.config.js ",
+    "build:clear": "rm -rf dist",
+    "config:dev": "cp .env.dev .env"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pm2": "^5.1.2"
   }
 }
